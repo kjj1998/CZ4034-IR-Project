@@ -69,7 +69,14 @@
             <p><strong>Description:</strong> {{i.information}}</p>
             <p><strong>Review:</strong> {{i.review}}</p>
             <p><strong>Subjectivity:</strong> {{i.subjectivity}}</p>
-            <p><strong>Prediction:</strong> {{i.prediction}}</p>
+            {# <p><strong>Prediction:</strong> {{i.prediction}}</p> #}
+            {% if i.prediction == "Positive" %}
+                <p><strong>Should You Buy It?:</strong> &#128077;</p>
+            {% elif i.prediction == "Negative" %}
+                <p><strong>Should You Buy It?:</strong> &#128078;</p>
+            {% else %}
+                <p><strong>Should You Buy It?:</strong> &#128528;</p>
+            {% endif %}
             <img src={{i.amazon_image_url}}>
             <hr/>
         {%endfor%}
