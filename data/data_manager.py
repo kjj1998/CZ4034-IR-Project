@@ -38,7 +38,9 @@ class DataManager:
                 review = product[6]
                 review_rating = int(float(product[7]))
                 amazon_image_url = product[8]
-                vector = [float(x) for x in ast.literal_eval(product[9])]
+                subjectivity = product[9]
+                prediction = product[10]
+                vector = [float(x) for x in ast.literal_eval(product[11])]
 
                 doc = {
                     "id": product_id,
@@ -50,6 +52,8 @@ class DataManager:
                     "review": review,
                     "review_rating": review_rating,
                     "amazon_image_url": amazon_image_url,
+                    "subjectivity": subjectivity,
+                    "prediction": prediction,
                     "vector": vector,
                 }
 

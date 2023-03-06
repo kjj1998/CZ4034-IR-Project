@@ -32,7 +32,7 @@ def retrieve_image():
 
 def form_query_parameters(text, image):
     query_parameters = {
-        "fl": "id,name,price,information,rating,review,score,amazon_image_url",
+        "fl": "id,name,price,information,rating,review,score,amazon_image_url,subjectivity,prediction",
         "q.op": "AND",
         "rows": 20,
     }
