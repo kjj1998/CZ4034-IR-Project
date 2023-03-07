@@ -59,3 +59,46 @@ class SolrClient:
         return self.__post(
             f"/solr/{self.__core_name}/update?commit=true", {"delete": {"query": "*:*"}}
         )
+        
+    def add_vector_field_type(self):
+        """Add a new Solr core.
+        """
+        body = {
+            "add-field-type": { 
+                "name": "knn_vector",
+                "class": "solr.DenseVectorField",
+                "vectorDimension": "512",
+                "similarityFunction": "cosine"
+            }
+        }
+        
+        return self.__post(f'/solr/{self.__core_name}/schema', body)
+    
+    def add_field(self, name, field_type, multi_valued=False, indexed=True, stored=True):
+        """Add a new field to the Solr core.
+        """
+        
+        body = {
+            "add-field": {
+                "name": name,
+                "type": field_type,
+                "multiValued": multi_valued,
+                "indexed": indexed,
+                "stored": stored
+            }
+        }
+        
+        return self.__post(f'/solr/{self.__core_name}/schema', body)
+    
+    def add_copy_field(self, source, dest):
+        """Add a new copy field.
+        """
+        
+        body = {
+            "add-copy-field": {
+                "source": source,
+                "dest": dest
+            }
+        }
+    
+        return self.__post(f'/solr/{self.__core_name}/schema', body)
