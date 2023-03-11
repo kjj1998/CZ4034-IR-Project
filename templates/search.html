@@ -78,14 +78,12 @@
     <hr>
     <div class="results">
         {%for i in results%}
-            {# <a href="{{i}}">{{i}}</a><br><br> #}
             <p><strong>Product Name:</strong> {{i.name}}</p>
             <p><strong>Price:</strong> ${{i.price}}</p>
             <p><strong>Rating:</strong> {{i.rating}}/5</p>
             <p><strong>Description:</strong> {{i.information}}</p>
             <p><strong>Review:</strong> {{i.review}}</p>
             <p><strong>Subjectivity:</strong> {{i.subjectivity}}</p>
-            {# <p><strong>Prediction:</strong> {{i.prediction}}</p> #}
             {% if i.prediction == "Positive" %}
                 <p><strong>Should You Buy It?:</strong> &#128077;</p>
             {% elif i.prediction == "Negative" %}
