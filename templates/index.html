@@ -13,9 +13,24 @@
 <style>
     .searchbar{
         margin-top: 50px;
-        margin-left: 800px;
+        margin-left: 200px;
         width: 100%;
     }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .element {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }   
 
     .bar{
         border-radius: 40px;
@@ -54,9 +69,12 @@
         border: 2px solid gray;
         color: gray;
         background-color: white;
-        padding: 8px 20px;
+        
         border-radius: 8px;
-        font-size: 20px;
+        width: 100%; /* Make the element fill the container width */
+        max-width: 500px; /* Set a max width for the element */
+        margin: 10px;
+        font-size: 15px;
         font-weight: bold;
     }
 
@@ -70,53 +88,71 @@
 
     .row {
         margin-top: 50px;
-        margin-left: 800px;
+        margin-left: 500px;
         width: 100%;
     }
 
-    .form-control {
+
+    .searchbar-input {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .searchbar-button {
+        display: block;
+        text-align: center;
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-left: 20px;
+
+        border: 2px solid gray;
+        color: white;
+        background-color: white;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
     }
 </style>
 <body>
-    <div class="text-center">
+    <div class="container">
         <h1 class="search-title">CZ4034 SEARCH</h1>
-    </div>
-    <form action="/search" method="GET" enctype="multipart/form-data">
-        {# <div class="searchbar">
-            <div class="upload-btn-wrapper">
-                <button class="btn">Upload an Image</button>
-                <input type="file" name="image" accept="image/*">
-            </div>
-        </div> #}
-        <div class="searchbar">
-            <input name="query" type="text submit" placeholder="Enter query here" class="bar">
-        </div>
-    </form>
-    <div class="row">
-        <div class="text-center"></div>
-            <h2>Select an image to upload for image search</h2>
-        </div>
-        <p>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-            {% endwith %}
-        </p>
-        <form method="post" action="/" enctype="multipart/form-data">
-            <dl>
-                <p>
-                    <input type="file" name="file" class="form-control" autocomplete="off" required>
-                </p>
-            </dl>
-            <p>
-                <input type="submit" value="Submit" class="btn btn-info">
-            </p>
+        <form action="/search" method="GET" enctype="multipart/form-data" class="container">
+            <form class="container">
+                <div>
+                    <input name="query" type="text" placeholder="Enter query here" class="searchbar-input">
+                </div>
+                <div>
+                    <button type="submit" class="searchbar-button btn-info">Search</button>
+                </div>
+            </form>
         </form>
+        <div>
+            <h2 class="element">
+                Select an image to upload for image search
+            </h2>
+            <p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+            </p>
+            <form method="post" action="/" enctype="multipart/form-data" class="element">
+                <dl>
+                    <p>
+                        <input type="file" name="file" autocomplete="off" required>
+                    </p>
+                </dl>
+                <p>
+                    <input type="submit" value="Submit Image" class="btn btn-info">
+                </p>
+            </form>
+        </div>
     </div>
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs"></script>
