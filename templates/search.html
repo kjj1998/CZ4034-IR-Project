@@ -14,9 +14,11 @@
         margin-left: 10px;
         width: 100%;
         padding-top: 10px;
+        display: inline-block;
     }
 
     .bar{
+        display: inline-block;
         border-radius: 40px;
         box-shadow: 2px 3px 0px -2px #ccc;
         padding:10px;
@@ -50,14 +52,28 @@
     .results {
         margin-left: 200px;
     }
+
+    .searchbar-button {
+        display: inline-block;
+        text-align: center;
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-left: 20px;
+
+        border: 2px solid gray;
+        color: white;
+        background-color: white;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+    }
 </style>
 <body>
     <form action="/search" method="GET">
-        {# <form action="/api/search" method="GET"> #}
         <div class="searchbar">
-            <input name="query" type="text submit" placeholder="Search the web" class="bar" value="{{query}}" required>
+            <input name="query" type="text submit" placeholder="Search" class="bar" value="{{query}}">
+            <button type="submit" class="searchbar-button btn-info">Search</button>
         </div>
-        {# </form> #}
     </form>
     <hr>
     <div class="results">
