@@ -15,7 +15,7 @@ class DataManager:
         :return: Nothing
         """
 
-        with open(file_path, encoding="utf8") as csv_file:
+        with open(file_path, encoding="ISO-8859-1") as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=",")
             line_count = 0
 
@@ -38,9 +38,9 @@ class DataManager:
                 review = product[6]
                 review_rating = int(float(product[7]))
                 amazon_image_url = product[8]
-                subjectivity = product[9]
-                prediction = product[10]
-                vector = [float(x) for x in ast.literal_eval(product[11])]
+                subjectivity = product[10]
+                prediction = product[11]
+                vector = [float(x) for x in ast.literal_eval(product[12])]
 
                 doc = {
                     "id": product_id,

@@ -93,7 +93,7 @@ class SearchSolr(Resource):
         remove_all_images_currently_stored()
 
         return make_response(
-            render_template("search.html", results=docs_data), 200, headers
+            render_template("search.html", results=docs_data, query=args["query"]), 200, headers
         )
 
 

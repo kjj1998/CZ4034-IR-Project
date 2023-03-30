@@ -7,10 +7,10 @@ from sentence_transformers import SentenceTransformer
 from PIL import Image
 from tqdm import tqdm
 
-CSV_FILENAME = "./clean_amzn_polarity.csv"
+CSV_FILENAME = "./overall_sentiment_classification_output.csv"
 
 
-amzn_df=pd.read_csv("./clean_amzn_polarity.csv")
+amzn_df = pd.read_csv("./overall_sentiment_classification_output.csv", encoding = "ISO-8859-1")
 img_model = SentenceTransformer('clip-ViT-B-32')
 
 image_urls = amzn_df['amazon_image_url'].to_numpy()

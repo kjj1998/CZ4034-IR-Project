@@ -4,12 +4,6 @@
 
 ### Set up project
 
-Switch on virtual environment
-
-``` bash
-source env/Scripts/activate
-```
-
 Install required libraries and dependencies
 
 ``` bash
@@ -18,7 +12,7 @@ pip install -r requirements.txt
 
 ### Set up Solr and create Solr core
 
-1. Navigate to your local installation of Solr </br>
+1. Navigate to your local installation of Solr (Note: An existing  Java SDK installation is required) </br>
 
     ``` bash
     cd <your path to solr>/solr-9.1.1
@@ -50,7 +44,9 @@ pip install -r requirements.txt
     python configure_solr_core.py
     ```
 
-### Generate embeddings for images (if needed)
+### Generate embeddings for images
+
+Note: The repo comes with pre-generated embeddings, so you can skip to the next step
 
 1. Navigate to the data folder of this project
 
@@ -91,3 +87,5 @@ pip install -r requirements.txt
     ```bash
     python app.py
     ```
+
+3. Navigate to <http://127.0.0.1:5000> to access the search app
