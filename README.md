@@ -75,6 +75,19 @@ Note: The repo comes with pre-generated embeddings, so you can skip to the next 
     python index_data_into_solr.py
     ```
 
+### Create an empty images directory
+
+The images directory will be used to store the uploaded image used for the image search temporarily, after which the image will be deleted at the end of the search
+
+Git does not keep track of empty directories, therefore we need to create the directory ourselves
+
+1. In your project root create a new empty 'images' directory
+
+    ``` bash
+    cd <your path>/CZ4034-IR-Project
+    mkdir images
+    ```
+
 ### Run the application
 
 1. Navigate to the root of this project
