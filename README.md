@@ -12,7 +12,8 @@ pip install -r requirements.txt
 
 ### Set up Solr and create Solr core
 
-1. Navigate to your local installation of Solr (Note: An existing  Java SDK installation is required) </br>
+1. Navigate to your local installation of Solr </br>
+   (Note: An existing Java SDK installation is required and the JAVA_HOME environment variable must be set to the path of your Java SDK installation)
 
     ``` bash
     cd <your path to solr>/solr-9.1.1
