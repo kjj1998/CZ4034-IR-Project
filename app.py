@@ -8,6 +8,7 @@ from clients.solr_client import SolrClient
 from configs.solr_configs import SOLR_CORE_NAME
 from configs.app_configs import UPLOAD_FOLDER
 from configs.app_configs import IMAGE_CONTENT_LENGTH
+from sentence_transformers import SentenceTransformer
 
 from utils import (
     allowed_file,
@@ -20,6 +21,7 @@ app = Flask(__name__)
 app.secret_key = "secretKey"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["MAX_CONTENT_LENGTH"] = IMAGE_CONTENT_LENGTH
+img_model = SentenceTransformer("clip-ViT-B-32")
 
 
 @app.route("/")
@@ -82,7 +84,7 @@ class SearchSolr(Resource):
         args = parser.parse_args()
         solr = SolrClient(core_name=SOLR_CORE_NAME)
 
-        query_parameters = form_query_parameters(args["query"], retrieve_image())
+        query_parameters = form_query_parameters(args["query"], retrieve_image(), img_model)
 
         res = solr.search_query(query_parameters)
         res_json = res.json()

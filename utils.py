@@ -1,6 +1,5 @@
 import os
 from configs.app_configs import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from sentence_transformers import SentenceTransformer
 from PIL import Image
 
 
@@ -8,8 +7,7 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def convert_image_to_vectors(opened_image):
-    img_model = SentenceTransformer("clip-ViT-B-32")
+def convert_image_to_vectors(opened_image, img_model):
     images = [opened_image]
 
     vectors = img_model.encode(images, convert_to_numpy=True, show_progress_bar=True)
@@ -30,7 +28,7 @@ def retrieve_image():
         return image
 
 
-def form_query_parameters(text, image):
+def form_query_parameters(text, image, img_model):
     query_parameters = {
         "fl": "id,name,price,information,rating,review,score,amazon_image_url,subjectivity,prediction",
         "q.op": "AND",
@@ -42,7 +40,7 @@ def form_query_parameters(text, image):
         query = "*:*"
     elif text == "" and image != None:
         image = retrieve_image()
-        vectors = convert_image_to_vectors(image)
+        vectors = convert_image_to_vectors(image, img_model)
         query = (
             "{!knn f=vector topK=20}"
             + "["
@@ -53,7 +51,7 @@ def form_query_parameters(text, image):
         query = text
     elif text != "" and image != None:
         image = retrieve_image()
-        vectors = convert_image_to_vectors(image)
+        vectors = convert_image_to_vectors(image,img_model)
         query = (
             "{!knn f=vector topK=20}"
             + "["
